@@ -2,7 +2,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
+# from langchain_ollama import OllamaEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.question_answering import load_qa_chain
@@ -30,7 +31,8 @@ def getchunks(text_documents):
     return chunks
                     
 def embeddings(chunks):
-    embeddings = OllamaEmbeddings(model="llama3",)
+    # embeddings = OllamaEmbeddings(model="llama3",)
+    embeddings = GoogleGenerativeAIEmbeddings( model="models/embedding-001")
     db = FAISS.from_documents(chunks, embedding = embeddings)
     db.save_local("db")
 
@@ -53,7 +55,8 @@ def chain():
     return document_chain
 
 def user_input(input_text):
-    embeddings = OllamaEmbeddings(model = "llama3",)
+    # embeddings = OllamaEmbeddings(model = "llama3",)
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     db = FAISS.load_local("db", embeddings, allow_dangerous_deserialization=True)
     retriever = db.as_retriever()
 
