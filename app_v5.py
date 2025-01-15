@@ -103,7 +103,8 @@ def main():
     
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
-            st.markdown(f"**{message["role"]}:** {message["content"]}")
+           st.markdown(f"**{message['role']}:** {message['content']}")
+
 
     # input message 
     input_text = st.chat_input()
