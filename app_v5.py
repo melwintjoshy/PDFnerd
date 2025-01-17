@@ -77,7 +77,7 @@ def main():
 
     with st.sidebar:
         custom_title = """
-                        <h1 style="font-size: 50px; color: white; font-family: 'Helvetica', sans-serif;">PDFnerd</h1>
+                        <h1 style="font-size: 50px; font-family: 'Helvetica', sans-serif;">PDFnerd</h1>
                        """
         st.markdown(custom_title, unsafe_allow_html=True)
         st.write("Simplify, Search, Solve: Your PDF Chat Companion!")
